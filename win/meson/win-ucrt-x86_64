@@ -1,0 +1,30 @@
+[constants]
+arch = 'x86_64'
+
+[host_machine]
+system = 'windows'
+subsystem = 'windows'
+kernel = 'nt'
+cpu_family = arch
+cpu = arch
+endian = 'little'
+
+[binaries]
+c = ['clang-cl',
+  '-Wno-unused-command-line-argument',
+  '-Wno-ignored-attributes',
+  '-fuse-ld=lld-link',
+  '/I/opt/xwin/crt/include',
+  '/I/opt/xwin/sdk/include/ucrt',
+  '/I/opt/xwin/sdk/include/um',
+  '/I/opt/xwin/sdk/include/shared']
+cpp = c
+c_ld = ['lld-link',
+  '/libpath:/opt/xwin/crt/lib/' + arch,
+  '/libpath:/opt/xwin/sdk/lib/um/' + arch,
+  '/libpath:/opt/xwin/sdk/lib/ucrt/' + arch]
+cpp_ld = c_ld
+
+
+[built-in options]
+
